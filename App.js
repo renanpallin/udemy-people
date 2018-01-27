@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 
 import Header from './src/components/Header';
+import PeopleList from './src/components/PeopleList';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -28,7 +29,8 @@ export default class App extends React.Component {
         return (
             <View>
                 <Header title="Pessoas!" />
-                {this.state.users.map(user => <Text key={user.name.first}>{ user.name.first }</Text>)}
+                <PeopleList peoples={this.state.users} />
+                {/*this.state.users.map(user => <Text key={user.name.first}>{ user.name.first }</Text>)*/}
             </View>
         );
     }
