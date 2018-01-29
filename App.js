@@ -1,16 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
+import { StackNavigator } from 'react-navigation';
 
 import Header from './src/components/Header';
 import PeopleList from './src/components/PeopleList';
 
-export default class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            users: []
-        }
+            users: [],
+        };
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ export default class App extends React.Component {
             )
             .then(res => {
                 this.setState({
-                    users: res.data.results
+                    users: res.data.results,
                 });
             });
     }
@@ -28,13 +29,42 @@ export default class App extends React.Component {
     render() {
         return (
             <View>
-                <Header title="Pessoas!" />
-                <PeopleList peoples={this.state.users} />
-                {/*this.state.users.map(user => <Text key={user.name.first}>{ user.name.first }</Text>)*/}
+                {/*<Header title="Pessoas!" />*/}
+
+                <PeopleList
+                    peoples={this.state.users}
+                    onPress={() => this.props.navigation.navigate('People')} />
             </View>
         );
     }
 }
+
+class PeopleScreen extends React.Component {
+    render() {
+        return (
+            <View>
+                <Text>Esta é a PeopleScreen</Text>
+            </View>
+        );
+    }
+}
+
+export default StackNavigator({
+    Main: {
+        screen: App,
+        navigationOptions: {
+            header: <Header title="Pessoas!" />,
+            // headerTitle: "Pessoas!",
+        }
+    },
+    People: {
+        screen: PeopleScreen,
+        navigationOptions: {
+            header: <Header title="Pessoas!" />,
+            // headerTitle: "Pessoas!",
+        }
+    }
+})
 
 const styles = StyleSheet.create({
     container: {

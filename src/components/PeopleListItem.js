@@ -1,25 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import {
+	StyleSheet,
+	View,
+	Text,
+	Image,
+	TouchableOpacity
+} from 'react-native';
 
 // string -> String
 const capitalizeFirstLetter = string => {
 	return string[0].toUpperCase() + string.slice(1);
 };
 
-const PeopleListItem = ({ people }) => (
-	<View style={styles.line}>
-		<Image
-			style={styles.avatar}
-			source={{ uri: people.picture.thumbnail }}
-		/>
-		<Text style={styles.lineText}>
-			{`${capitalizeFirstLetter(
-				people.name.title
-			)} ${capitalizeFirstLetter(
-				people.name.first
-			)} ${capitalizeFirstLetter(people.name.last)}`}
-		</Text>
-	</View>
+const PeopleListItem = ({ people, onPress }) => (
+	<TouchableOpacity onPress={onPress}>
+		<View style={styles.line}>
+			<Image
+				style={styles.avatar}
+				source={{ uri: people.picture.thumbnail }}
+			/>
+			<Text style={styles.lineText}>
+				{`${capitalizeFirstLetter(
+					people.name.title
+				)} ${capitalizeFirstLetter(
+					people.name.first
+				)} ${capitalizeFirstLetter(people.name.last)}`}
+			</Text>
+		</View>
+	</TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
