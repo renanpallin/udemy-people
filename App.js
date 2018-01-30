@@ -33,7 +33,13 @@ class App extends React.Component {
 
                 <PeopleList
                     peoples={this.state.users}
-                    onPress={() => this.props.navigation.navigate('People')} />
+                    onPress={navigationState =>
+                        this.props.navigation.navigate(
+                            'People',
+                            navigationState
+                        )
+                    }
+                />
             </View>
         );
     }
@@ -49,22 +55,38 @@ class PeopleScreen extends React.Component {
     }
 }
 
-export default StackNavigator({
-    Main: {
-        screen: App,
-        navigationOptions: {
-            header: <Header title="Pessoas!" />,
-            // headerTitle: "Pessoas!",
-        }
+export default StackNavigator(
+    {
+        Main: {
+            screen: App,
+        },
+        People: {
+            screen: PeopleScreen,
+            navigationOptions: ({ navigation }) => {
+                return {
+                    title: navigation.state.params.peopleName,
+                };
+            },
+        },
     },
-    People: {
-        screen: PeopleScreen,
+    {
         navigationOptions: {
-            header: <Header title="Pessoas!" />,
-            // headerTitle: "Pessoas!",
-        }
+            title: 'Pessoas!',
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: '#2acccc',
+                borderWidth: 1,
+                borderBottomColor: 'white',
+            },
+            headerTitleStyle: {
+                color: 'white',
+                fontSize: 30,
+                // @todo: Centralizar isso aqui
+                textAlign: 'center',
+            },
+        },
     }
-})
+);
 
 const styles = StyleSheet.create({
     container: {
