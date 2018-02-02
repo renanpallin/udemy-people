@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 	lineText: {
 		color: '#000',
 		fontSize: 20,
-		flex: 8,
+		flex: 6,
 		paddingLeft: 15,
 		// backgroundColor: '#a12',
 	},
@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
 		// backgroundColor: '#a12',
 		marginLeft: 15,
 		borderRadius: 25,
-		height: 50,
-		width: 50,
 		flex: 1,
+		height: 60,
+		aspectRatio: 1,
+		// width: 50,
 	},
 });
 
