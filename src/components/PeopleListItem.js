@@ -1,14 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-
-// string -> String
-const capitalizeFirstLetter = string => {
-	return string[0].toUpperCase() + string.slice(1);
-};
+import { capitalizeFirstLetter } from '../util';
 
 const PeopleListItem = ({ people, onPress }) => (
 	<TouchableOpacity
-		onPress={() => onPress({ peopleName: people.name.first })}>
+		onPress={() => onPress({ people })}>
 		<View style={styles.line}>
 			<Image
 				style={styles.avatar}

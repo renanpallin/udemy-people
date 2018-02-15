@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Header from './src/components/Header';
 import PeopleList from './src/components/PeopleList';
+import PeopleScreen from './src/screens/PeopleScreen';
 
 class App extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 {/*<Header title="Pessoas!" />*/}
 
                 <PeopleList
@@ -45,16 +46,6 @@ class App extends React.Component {
     }
 }
 
-class PeopleScreen extends React.Component {
-    render() {
-        return (
-            <View>
-                <Text>Esta é a PeopleScreen</Text>
-            </View>
-        );
-    }
-}
-
 export default StackNavigator(
     {
         Main: {
@@ -64,7 +55,8 @@ export default StackNavigator(
             screen: PeopleScreen,
             navigationOptions: ({ navigation }) => {
                 return {
-                    title: navigation.state.params.peopleName,
+                    // title: "FULANO @todo",
+                    title: navigation.state.params.people.name.first,
                 };
             },
         },
@@ -90,7 +82,7 @@ export default StackNavigator(
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        // flex: 1,
+        // backgroundColor: '#a12',
     },
 });
